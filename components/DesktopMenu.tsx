@@ -16,7 +16,7 @@ import SportsBarTwoToneIcon from '@mui/icons-material/SportsBarTwoTone';
 
 const drawerWidth = 240;
 
-const DesktopMenu: React.FC = () => (
+export const DesktopMenu: React.FC = () => (
   <Box sx={{ display: 'flex' }}>
     <CssBaseline />
     <AppBar
@@ -77,4 +77,3 @@ const DesktopMenu: React.FC = () => (
     </Drawer>
   </Box>
 );
-export default DesktopMenu;

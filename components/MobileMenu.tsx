@@ -1,23 +1,26 @@
-import * as React from 'react';
+import { useState } from 'react';
 import {
-  styled, useTheme, Theme, CSSObject,
+  CSSObject,
+  styled,
+  Theme,
+  useTheme,
 } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiDrawer from '@mui/material/Drawer';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import AccountBoxTwoToneIcon from '@mui/icons-material/AccountBoxTwoTone';
 import SportsBarTwoToneIcon from '@mui/icons-material/SportsBarTwoTone';
 
@@ -49,7 +52,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -92,10 +94,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-// eslint-disable-next-line react/function-component-definition
-export default function MobileMenu() {
+export const MobileMenu = () => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -118,7 +119,7 @@ export default function MobileMenu() {
             sx={{
               color: 'black',
               marginRight: 5,
-              paddingLeft: {sm:0.7, xs:1.7},
+              paddingLeft: { sm: 0.7, xs: 1.7 },
               ...(open && { display: 'none' }),
             }}
           >
@@ -165,4 +166,4 @@ export default function MobileMenu() {
       </Drawer>
     </Box>
   );
-}
+};

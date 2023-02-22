@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import DesktopMenu from './DesktopMenu';
-import MobileMenu from './MobileMenu';
+import { DesktopMenu } from './DesktopMenu';
+import { MobileMenu } from './MobileMenu';
 
 const Navbar: React.FC = () => (
   <Box>
