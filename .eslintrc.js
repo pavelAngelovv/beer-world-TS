@@ -8,7 +8,7 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './beer-world-TS/tsconfig.eslint.json',
+    project: './tsconfig.eslint.json',
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint'],
