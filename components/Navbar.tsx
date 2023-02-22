@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { DesktopMenu } from './DesktopMenu';
 import { MobileMenu } from './MobileMenu';
 
-const Navbar: React.FC = () => (
+export const Navbar: React.FC = () => (
   <Box>
     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
       <MobileMenu />
@@ -21,5 +21,3 @@ const Navbar: React.FC = () => (
     </Box>
   </Box>
 );
-
-export default Navbar;
