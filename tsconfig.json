@@ -22,9 +22,9 @@
   "include": [
     ".eslintrc.js",
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
+    "**/*.tsx",
+    "**/*.ts"
+, "next.config.js"  ],
   "exclude": [
     "node_modules"
   ]
