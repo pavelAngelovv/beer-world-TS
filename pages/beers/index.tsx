@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import { RenderBeers } from '../../components/RenderBeers';
 
 const Home = () => (
-  <Box sx={{}}>
+  <Box>
     <Typography
       sx={{
         marginLeft: {

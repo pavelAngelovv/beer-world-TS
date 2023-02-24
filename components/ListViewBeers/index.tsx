@@ -10,7 +10,20 @@ import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
 import styles from './styles';
 
-export const ListViewBeers = ({ beers }) => (
+type BeerProps = {
+  name?: string;
+  image_url?: string;
+  first_brewed?: string;
+  contributed_by?: string;
+  abv?: number;
+  id?: number;
+};
+
+type ListViewBeersProps = {
+  beers: Array<BeerProps>
+};
+
+export const ListViewBeers = ({ beers }: ListViewBeersProps) => (
   <Box>
     <Table sx={{ maxWidth: 500 }} aria-label="simple table">
       <Box sx={{ ml: 2, mb: 4 }}>

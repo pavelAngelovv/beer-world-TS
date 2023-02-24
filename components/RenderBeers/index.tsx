@@ -1,52 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Pagination from '@mui/material/Pagination';
+import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import SearchIcon from '@mui/icons-material/Search';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
-import { GridViewBeers } from './GridViewBeers/index';
-import { ListViewBeers } from './ListViewBeers';
+import { GridViewBeers } from '../GridViewBeers/index';
+import { ListViewBeers } from '../ListViewBeers';
+import { styles } from './styles';
 
-const myAlert = (props, ref) => (
-  <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
-);
+type View = 'listView' | 'gridView';
 
-const Alert = React.forwardRef(myAlert);
+export type BeerProps = {
+  name?: string;
+  image_url?: string;
+  first_brewed?: string;
+  contributed_by?: string;
+  abv?: number;
+  id?: number;
+  tagline?: string;
+};
+
+type EventProps = {
+  value?: string;
+};
 
 export const RenderBeers = () => {
   const router = useRouter();
   const [page, setPage] = useState(1);
-  const [view, setView] = useState('gridView');
-  const [beers, setBeers] = useState([]);
+  const [view, setView] = useState<View>('gridView');
+  const [beers, setBeers] = useState(Array<BeerProps>);
   const [query, setQuery] = useState('');
   const [isSearch, setIsSearch] = useState(false);
-  const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const allBeersUrl = `https://api.punkapi.com/v2/beers?page=${page}&per_page=10`;
   const queryBeersUrl = `https://api.punkapi.com/v2/beers?beer_name=${query}&per_page=10`;
 
-  const handleClose = (closeEvent, reason) => {
-    if (reason === 'clickaway') {
-      return null;
-    }
-
-    return setOpen(false);
-  };
-
-  const getBeerData = (url) => {
+  const getBeerData = (url: string) => {
     axios
       .get(url)
       .then((response) => {
@@ -56,20 +58,21 @@ export const RenderBeers = () => {
       })
       .catch((error) => {
         setErrorMessage(error.message);
-        setOpen(true);
       });
   };
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: ChangeEvent<EventProps>) => {
     setQuery(event.target.value);
   };
 
-  const handleChange = (event, value) => {
+  const handleChange = (event, value): number => {
     setPage(value);
     router.push(`beers/?page=${value}`, undefined, { shallow: true });
+
+    return value;
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: ChangeEvent<EventProps>) => {
     event.preventDefault();
     if (query === '') {
       router.push('beers', undefined, { shallow: true });
@@ -85,28 +88,9 @@ export const RenderBeers = () => {
   }, [allBeersUrl, page]);
 
   return (
-    <Box
-      sx={{
-        width: {
-          lg: '130%',
-          md: '100%',
-        },
-      }}
-    >
+    <Box sx={styles.beerPageContainer}>
       <Box>
-        <FormControl
-          sx={{
-            display: 'inline-block',
-            pb: 10,
-            ml: {
-              lg: 5,
-              md: 10,
-              sm: 10,
-              xs: 7,
-            },
-          }}
-          onSubmit={handleSubmit}
-        >
+        <FormControl sx={styles.searchForm} onSubmit={handleSubmit}>
           <TextField
             id="input-search"
             size="medium"
@@ -148,39 +132,14 @@ export const RenderBeers = () => {
             <ViewListIcon />
           </ToggleButton>
         </ToggleButtonGroup>
-        <Box
-          width="100%"
-          sx={{
-            pl: {
-              lg: 0,
-              md: 0,
-              sm: 5,
-              xs: 5,
-            },
-            ml: {
-              lg: 0,
-              md: 25,
-              sm: 5,
-              xs: 0,
-            },
-          }}
-        >
+        <Box width="100%" sx={styles.gridViewCardsContainer}>
           {view === 'gridView' ? <GridViewBeers beers={beers} /> : null}
         </Box>
         {view === 'listView' ? <ListViewBeers beers={beers} /> : null}
       </Box>
 
       {!isSearch && (
-        <Stack
-          sx={{
-            color: '#ffffff',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            marginTop: '1rem',
-            textAlign: 'center',
-          }}
-          spacing={2}
-        >
+        <Stack sx={styles.paginationContainer} spacing={2}>
           <Typography>
             Page:
             {' '}
@@ -195,10 +154,9 @@ export const RenderBeers = () => {
           />
         </Stack>
       )}
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-          {errorMessage}
-        </Alert>
+
+      <Snackbar open={!!errorMessage} autoHideDuration={6000}>
+        <Alert severity="error">{errorMessage}</Alert>
       </Snackbar>
     </Box>
   );

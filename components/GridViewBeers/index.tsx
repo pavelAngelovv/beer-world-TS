@@ -10,9 +10,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { styles } from './styles';
 
-export const GridViewBeers = ({ beers }) => (
+export type BeerProps = {
+  name?: string;
+  image_url?: string;
+  tagline?: string;
+  abv?: number;
+  id?: number;
+};
+type GridViewBeersProps = {
+  beers: Array<BeerProps>
+};
+
+export const GridViewBeers = ({ beers }: GridViewBeersProps) => (
+
   <Grid container direction="row" wrap="wrap" spacing={3}>
-    {beers.map((beer) => (
+    {beers.map((beer: BeerProps) => (
       <Box key={beer.id} sx={{ m: 2, textAlign: 'center' }}>
         <Card sx={styles.card}>
           <Box sx={styles.cardContainer}>
