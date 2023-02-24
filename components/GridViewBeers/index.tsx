@@ -9,22 +9,15 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import Image from 'next/image';
 import { styles } from './styles';
+import { Beer } from '../../types';
 
-export type BeerProps = {
-  name?: string;
-  image_url?: string;
-  tagline?: string;
-  abv?: number;
-  id?: number;
-};
 type GridViewBeersProps = {
-  beers: Array<BeerProps>
+  beers: Array<Beer>;
 };
 
 export const GridViewBeers = ({ beers }: GridViewBeersProps) => (
-
   <Grid container direction="row" wrap="wrap" spacing={3}>
-    {beers.map((beer: BeerProps) => (
+    {beers.map((beer: Beer) => (
       <Box key={beer.id} sx={{ m: 2, textAlign: 'center' }}>
         <Card sx={styles.card}>
           <Box sx={styles.cardContainer}>

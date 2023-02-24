@@ -19,17 +19,13 @@ import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import { GridViewBeers } from '../GridViewBeers/index';
 import { ListViewBeers } from '../ListViewBeers';
 import { styles } from './styles';
+import { Beer } from '../../types';
 
 type View = 'listView' | 'gridView';
 
-export type BeerProps = {
-  name?: string;
-  image_url?: string;
-  first_brewed?: string;
-  contributed_by?: string;
-  abv?: number;
-  id?: number;
-  tagline?: string;
+type HandleChangeProps = {
+  event: ChangeEvent<EventProps>;
+  value: number;
 };
 
 type EventProps = {
@@ -40,7 +36,7 @@ export const RenderBeers = () => {
   const router = useRouter();
   const [page, setPage] = useState(1);
   const [view, setView] = useState<View>('gridView');
-  const [beers, setBeers] = useState(Array<BeerProps>);
+  const [beers, setBeers] = useState(Array<Beer>);
   const [query, setQuery] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -65,11 +61,11 @@ export const RenderBeers = () => {
     setQuery(event.target.value);
   };
 
-  const handleChange = (event, value): number => {
+  const handleChange = (event, value): HandleChangeProps => {
     setPage(value);
     router.push(`beers/?page=${value}`, undefined, { shallow: true });
 
-    return value;
+    return null;
   };
 
   const handleSubmit = async (event: ChangeEvent<EventProps>) => {

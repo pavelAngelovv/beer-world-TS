@@ -9,18 +9,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Link from 'next/link';
 import styles from './styles';
-
-type BeerProps = {
-  name?: string;
-  image_url?: string;
-  first_brewed?: string;
-  contributed_by?: string;
-  abv?: number;
-  id?: number;
-};
+import { Beer } from '../../types';
 
 type ListViewBeersProps = {
-  beers: Array<BeerProps>
+  beers: Array<Beer>
 };
 
 export const ListViewBeers = ({ beers }: ListViewBeersProps) => (
