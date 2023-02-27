@@ -1,4 +1,9 @@
 export const styles = {
+  changeViewButton: {
+    backgroundColor: 'white',
+    float: 'right',
+    mr: { xl: 10, lg: 70 },
+  },
   beerPageContainer: {
     width: {
       lg: '130%',

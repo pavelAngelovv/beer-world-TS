@@ -107,11 +107,7 @@ export const RenderBeers = () => {
         <ToggleButtonGroup
           orientation="horizontal"
           exclusive
-          sx={{
-            backgroundColor: 'white',
-            float: 'right',
-            mr: { xl: 10, lg: 70 },
-          }}
+          sx={styles.changeViewButton}
         >
           <ToggleButton
             onClick={() => {
