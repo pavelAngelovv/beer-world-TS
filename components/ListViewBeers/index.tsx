@@ -16,7 +16,7 @@ type ListViewBeersProps = {
 };
 
 export const ListViewBeers = ({ beers }: ListViewBeersProps) => (
-  <Box>
+  <Box sx={styles.tableContainer}>
     <Table sx={{ maxWidth: 500 }} aria-label="simple table">
       <Box sx={{ ml: 2, mb: 4 }}>
         <TableHead>

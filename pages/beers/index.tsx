@@ -1,19 +1,12 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { RenderBeers } from '../../components/RenderBeers';
+import { styles } from './styles';
 
 const Home = () => (
   <Box>
     <Typography
-      sx={{
-        marginLeft: {
-          lg: 30, md: 10, sm: 10, xs: 10,
-        },
-        textAlign: 'center',
-        fontSize: '90px',
-        fontFamily: ' "Brush Script MT", cursive;',
-        paddingTop: 10,
-      }}
+      sx={styles.titleContainer}
     >
       Beers
     </Typography>

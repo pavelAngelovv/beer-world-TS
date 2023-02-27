@@ -107,7 +107,11 @@ export const RenderBeers = () => {
         <ToggleButtonGroup
           orientation="horizontal"
           exclusive
-          sx={{ backgroundColor: 'white', float: 'right', mr: 7 }}
+          sx={{
+            backgroundColor: 'white',
+            float: 'right',
+            mr: { xl: 10, lg: 70 },
+          }}
         >
           <ToggleButton
             onClick={() => {
@@ -128,7 +132,7 @@ export const RenderBeers = () => {
             <ViewListIcon />
           </ToggleButton>
         </ToggleButtonGroup>
-        <Box width="100%" sx={styles.gridViewCardsContainer}>
+        <Box sx={styles.gridViewCardsContainer}>
           {view === 'gridView' ? <GridViewBeers beers={beers} /> : null}
         </Box>
         {view === 'listView' ? <ListViewBeers beers={beers} /> : null}

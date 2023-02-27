@@ -16,6 +16,7 @@ export const styles = {
     },
   },
   gridViewCardsContainer: {
+    width: { xl: '110%', lg: '100%', md: '110%' },
     pl: {
       lg: 0,
       md: 0,
@@ -24,7 +25,7 @@ export const styles = {
     },
     ml: {
       lg: 0,
-      md: 25,
+      md: 5,
       sm: 5,
       xs: 0,
     },
@@ -35,5 +36,7 @@ export const styles = {
     alignItems: 'center',
     marginTop: '1rem',
     textAlign: 'center',
+    mr: { xl: 0, lg: 90 },
+    ml: { xl: 15, lg: 50 },
   },
 };
