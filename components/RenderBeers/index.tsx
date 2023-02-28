@@ -23,11 +23,6 @@ import { Beer } from '../../types';
 
 type View = 'listView' | 'gridView';
 
-type HandleChangeProps = {
-  event: ChangeEvent<EventProps>;
-  value: number;
-};
-
 type EventProps = {
   value?: string;
 };
@@ -61,11 +56,9 @@ export const RenderBeers = () => {
     setQuery(event.target.value);
   };
 
-  const handleChange = (event, value): HandleChangeProps => {
+  const handleChange = (event: ChangeEvent<EventProps>, value: number) => {
     setPage(value);
     router.push(`beers/?page=${value}`, undefined, { shallow: true });
-
-    return null;
   };
 
   const handleSubmit = async (event: ChangeEvent<EventProps>) => {
