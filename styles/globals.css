@@ -41,3 +41,9 @@ footer {
   color: #777;
   margin-top: 1cm;
 }
+
+.cardImg {
+  padding-top: '8%';
+    object-fit: contain;
+    padding-bottom: '8%';
+}
